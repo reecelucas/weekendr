@@ -1,0 +1,25 @@
+service: weekendr
+
+plugins:
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: "${env:ENVIRONMENT}"
+  region: eu-west-1
+  environment:
+    EMAIL: "${env:EMAIL}"
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action: "ses:SendEmail"
+      Resource: "*"
+
+functions:
+  send:
+    name: "${self:service}-send-email-${self:provider.stage}"
+    handler: handler.send
+    events:
+      # Run at 3:00 pm (UTC) every Tuesday, since this is
+      # apparently one of the best times to find cheap flights
+      - schedule: cron(0 15 ? * TUE *)

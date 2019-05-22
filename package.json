@@ -1,0 +1,46 @@
+{
+  "name": "weekendr",
+  "version": "1.0.0",
+  "description": "Weekend breaks for under £300, straight to my inbox",
+  "main": "handler.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reecelucas/weekendr.git"
+  },
+  "scripts": {
+    "invoke:fn": "serverless invoke -f",
+    "deploy:fn": "serverless deploy function -f",
+    "deploy:all": "NODE_ENV=development serverless deploy",
+    "deploy:all:prod": "NODE_ENV=production serverless deploy",
+    "format": "prettier --write '**/*.js'",
+    "lint": "eslint '**/*.js'",
+    "precommit": "prettier --check '**/*.js' && yarn run lint",
+    "prepush": "yarn run deploy:all:prod"
+  },
+  "keywords": ["serverless", "aws", "lamda", "SES"],
+  "author": "Reece Lucas <reecelucas@sky.com>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "aws-sdk": "^2.446.0",
+    "dateformat": "^3.0.3",
+    "lodash": "^4.17.11",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "husky": "^2.3.0",
+    "prettier": "^1.17.1",
+    "serverless": "^1.41.1",
+    "serverless-dotenv-plugin": "^2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit",
+      "pre-push": "npm run prepush"
+    }
+  }
+}
