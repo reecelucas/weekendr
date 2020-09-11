@@ -24,7 +24,7 @@
     "aws-sdk": "^2.446.0",
     "dateformat": "^3.0.3",
     "lodash": "^4.17.11",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
